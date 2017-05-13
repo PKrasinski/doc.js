@@ -7,7 +7,7 @@ class Reader {
     // -p file {String} -m "File content as string"
     // -r {Part} -m "Return Part element" -e
     readJS ( file ) {
-        console.log( file );
+        console.log(file)
     }
 }
 

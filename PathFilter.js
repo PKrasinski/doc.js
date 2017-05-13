@@ -1,26 +1,65 @@
+const dirTree = require('directory-tree');
+
 // doc -c PathFilter -m "This class generate array with files path"
 // -p path {String} -m "Main project path"
-// -p src {String/Array} -m "Main project path" 
+// -p src {String/Array} -m "Files path"
+// -p fileExt {String/Array} -m "Files extension"
+// -p ignore {String/Array} -m "Ignore paths" -e
 class PathFilter {
-    constructor ( path, src, fileType, ignore ) {
-        if(path instanceof String)
+    constructor ( path, src, fileExt, ignore ) {
+        if(typeof path === 'string' || path instanceof String)
             this.__path = path;
         else
             throw new TypeError('path must be string');
 
         this.src = getArray(src);
-        this.fileType = getArray(fileType);
+        this.fileExt = getArray(fileExt);
         this.ignore = getArray(ignore);
     }
 
-    // doc -f ^ PathFilter -m "Function return documentation JSON Object "
-    // -r {JSON} -m "documentation Object" -e
-    getJSON () {
-        if(!(this.paths instanceof Array))
-            throw new TypeError('paths must be Array');
+    // doc -f getArray ^ PathFilter -m "Function returns the filtered array with all paths"
+    // -r {Array} -m "paths array" -e
+    getArray () {
+        this.paths = [];
+        this.src.forEach((path) => {
+            path = this.__path + path;
+            this.getFromTree(dirTree(path));
+        })
+        return this.paths;
+    }
+    // doc -f getPaths ^ PathFilter -m "Function returns the filtered array with part of the paths"
+    // -p path {String} -m "Path"
+    // -r {Array} -m "paths array" -e
+
+    getFromTree (tree) {
+        if(tree.children === undefined){
+            const elem = this.filter(tree)
+            if(elem !== undefined)
+                this.paths.push(elem);
+        }
+        else {
+            tree.children.forEach((child) => {
+                this.getFromTree(child)
+            })
+        }
+    }
+
+    filter (elem) {
+        let ignore = false;
+        this.ignore.forEach((ign) => {
+            if(elem.path.indexOf(ign) > -1)
+                ignore = true;
+        })
+        if(ignore)
+            return;
         this.paths.forEach((path) => {
-            console.log('tak');
-        });
+            if(path.path === elem.path)
+                ignore = true;
+        })
+        if(ignore)
+            return;
+        else
+            return elem;
     }
 }
 
@@ -29,8 +68,8 @@ module.exports = PathFilter;
 function getArray ( elem ) {
     if(elem instanceof Array)
         return elem;
-    if(elem instanceof String)
+    if(typeof elem === 'string' || elem instanceof String)
         return [elem];
     else
-        throw new TypeError('src must be array or string');
+        throw new TypeError('this element must be array or string');
 }
