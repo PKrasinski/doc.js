@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^2.9.0",
+    "directory-tree": "^1.2.1",
     "fs": "0.0.1-security"
   }
 }

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const program = require('commander');
+
+const dirTree = require('directory-tree');
 const path = require('path');
 const fs = require('fs');
-const __path = path.resolve();
-const config = require(__path + '/docjs.json');
 
-console.log(config)
+const __path = path.resolve();
+const __config = require(__path + '/docjs.json');
