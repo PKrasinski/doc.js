@@ -3,8 +3,8 @@
 const path = require('path');
 const fs = require('fs');
 
-const DocumentationGenerator = require("./DocumentationGenerator.js");
-const PathFilter = require("./PathFilter.js");
+const DocumentationGenerator = require("./src/DocumentationGenerator.js");
+const PathFilter = require("./src/PathFilter.js");
 
 const __path = path.resolve();
 const __config = require(__path + '/docjs.json');

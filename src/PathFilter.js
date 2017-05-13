@@ -27,10 +27,10 @@ class PathFilter {
         })
         return this.paths;
     }
-    // doc -f getPaths ^ PathFilter -m "Function returns the filtered array with part of the paths"
-    // -p path {String} -m "Path"
-    // -r {Array} -m "paths array" -e
 
+    // doc -f getPaths ^ PathFilter -m "Function returns the filtered array with part of the paths"
+    // -p tree {String} -m "Path"
+    // -r {Array} -m "paths array" -e
     getFromTree (tree) {
         if(tree.children === undefined){
             const elem = this.filter(tree)
@@ -71,5 +71,5 @@ function getArray ( elem ) {
     if(typeof elem === 'string' || elem instanceof String)
         return [elem];
     else
-        throw new TypeError('this element must be array or string');
+        return [];
 }
