@@ -1,0 +1,18 @@
+{
+  "name": "doc.js",
+  "version": "1.0.0",
+  "description": "Documentation Framework",
+  "main": "index.js",
+  "bin": {
+    "docjs": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "author": "Przemysław Krasiński",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "fs": "0.0.1-security"
+  }
+}
