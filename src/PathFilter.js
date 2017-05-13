@@ -28,9 +28,8 @@ class PathFilter {
         return this.paths;
     }
 
-    // doc -f getPaths ^ PathFilter -m "Function returns the filtered array with part of the paths"
-    // -p tree {String} -m "Path"
-    // -r {Array} -m "paths array" -e
+    // doc -f getFromTree ^ PathFilter -m "Function push filtered path to paths array"
+    // -p tree {JSON} -m "Files tree" -e
     getFromTree (tree) {
         if(tree.children === undefined){
             const elem = this.filter(tree)
@@ -44,6 +43,9 @@ class PathFilter {
         }
     }
 
+    // doc -f filter ^ PathFilter -m "The function checks if path is not in the array and is not ignored and return path"
+    // -p elem {JSON} -m "Path object"
+    // -r {JSON/undefined} -m "Return undefined when path object is ignore or is in array, otherwise return path object"
     filter (elem) {
         let ignore = false;
         this.ignore.forEach((ign) => {
