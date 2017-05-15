@@ -15,5 +15,14 @@
     "commander": "^2.9.0",
     "directory-tree": "^1.2.1",
     "fs": "0.0.1-security"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PKrasinski/doc.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PKrasinski/doc.js/issues"
+  },
+  "homepage": "https://github.com/PKrasinski/doc.js#readme"
 }

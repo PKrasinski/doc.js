@@ -14,7 +14,7 @@ class DocumentationGenerator {
     getJSON () {
         this.paths.forEach((path) => {
             if(path.extension === ".js"){
-                this.reader.readJS(path);
+                this.reader.readJS(path.path);
             }
         });
     }
